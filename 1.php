@@ -6,6 +6,4 @@
  * and open the template in the editor.
  */
 
-echo 1;
-
-echo "second_branch";
+echo "one";
