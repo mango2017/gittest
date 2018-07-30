@@ -9,5 +9,3 @@
 echo 1;
 
 echo "second_branch";
-echo "aaaaaaaaaa";
-echo "bbbbbbbbbbbbb";
