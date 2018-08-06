@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>地理位置</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p id="latitude"></p>
+        <p id="longitude"></p>
+        <script>
+            var longitude = document.getElementById("longitude");
+            var latitude = document.getElementById("latitude");
+            function success(position) {
+                latitude.innerHTML = position.coords.latitude;
+                longitude.innerHTML = position.coords.longitude;
+            }
+            function error(errorCode) {
+                alert(errorCode.code + "---" + errorCode.message);
+            }
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(success, error);//实时获取当前位置
+                navigator.geolocation.getCurrentPosition(success, error);//获取当前位置，非实时状态
+            } else {
+                alert("您的浏览器不支持");
+            }
+        </script>
+    </body>
+</html>

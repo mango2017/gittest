@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>退拽技术</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            /*ul默认左边距有40px*/
+            ul,body{
+                margin: 0px;
+                padding:0px;
+            }
+            #box{
+                width:200px;
+                height: 200px;
+                border:1px solid red;
+            }
+            #con{
+                width:200px;
+                height: 200px;
+                border:1px solid red;
+                /*list-style:box;*/
+                margin: 0px;
+                padding: 0px;
+            }
+            li{
+               width: 150px;
+               height:30px;
+               margin:5px 0px;
+               background: #ccc;
+               list-style-type:none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <div id="con">
+            <ul>
+                <li>啦啦啦</li>
+                <li>哈哈哈</li>
+                <li>呵呵呵</li>
+            </ul>
+        </div>
+        <script>
+            window.onload = function(){
+                var box = document.getElementById("box");
+                var con = document.getElementById("con");
+                var lis = document.getElementsByTagName("li");
+                for(var i=0;i<lis.length;i++){
+                    lis[i].draggable = "true";
+                    lis[i].flag = false;
+                    lis[i].ondragstart = function(){
+                        this.flag = true;
+                    }
+                    lis[i].ondragend = function(){
+                        this.flag = false;
+                    }
+                }
+                box.ondragover = function(e){
+                    e.preventDefault();
+                }
+                //源对象进入目标对象
+                 box.ondragenter = function(e){
+                    e.preventDefault();
+                }
+                //源对象离开目标对象
+                box.ondragleave = function(e){
+                    e.preventDefault();
+                }
+                //源对象在目标对象中松手
+                 box.ondrop = function(e){
+                    e.preventDefault();
+                    for(var i=0;i<lis.length;i++){
+                        if(lis[i].flag){
+                            box.appendChild(lis[i]);
+                        }
+                    }
+                    
+                }
+                
+                
+                con.ondragover = function(e){
+                    e.preventDefault();
+                }
+                //源对象进入目标对象
+                 con.ondragenter = function(e){
+                    e.preventDefault();
+                }
+                //源对象离开目标对象
+                con.ondragleave = function(e){
+                    e.preventDefault();
+                }
+                //源对象在目标对象中松手
+                 con.ondrop = function(e){
+                    e.preventDefault();
+                    for(var i=0;i<lis.length;i++){
+                        if(lis[i].flag){
+                            con.appendChild(lis[i]);
+                        }
+                    }
+                    
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>简单存储之应用localStorage</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            window.onload = function(){
+                var name = document.getElementsByName("name")[0];
+                var pass = document.getElementsByName("pass")[0];
+                var save = document.getElementsByName("save")[0];
+//                alert(localStorage.getItem("name") +"---"+  localStorage.getItem("pass"));
+                if(localStorage.getItem("name") && localStorage.getItem("pass")){
+                    name.value = localStorage.getItem("name");
+                    pass.value = localStorage.getItem("pass");
+                    save.checked = true;
+                }else{
+                     name.value ="";
+                     pass.value="";
+                     save.checked = false;
+                }
+                save.onclick = function(){
+                    if(save.checked){
+                        localStorage.setItem("name",name.value);
+                        localStorage.setItem("pass",pass.value);
+                    }else{
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("pass");
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        用户名:<input type="text" name="name">
+        密码:<input type="password" name="pass">
+        是否保存:<input type="checkbox" name="save">
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>退拽技术</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #one{
+                width: 500px;
+                height: 500px;
+                border: 1px solid red;
+            }
+            #two{
+               width: 50px;
+                height: 50px;
+                border: 1px solid blue; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="one">目标元素</div>
+        <div id="two" draggable="true">源元素</div>
+        <script>
+            window.onload = function(){
+                var two = document.getElementById("two");//源对象
+                var one = document.getElementById("one");//目标对象
+                //源对象开始被拖动
+                two.ondragstart = function(e){
+//                    one.innerHTML  = "开始";
+                    e.dataTransfer.setData("name","aaa");  //传递参数
+                }
+                //源对象被拖动过程中
+                two.ondrag = function(){
+//                    one.innerHTML+="移动中";
+                }
+                //源对象被拖动结束
+                two.ondragend = function(){
+//                    one.innerHTML="完成";
+                }
+                //源对象进入到目标对象，在目标对象中悬停
+                one.ondragover = function(e){
+//                    one.innerHTML="移动";
+                    e.preventDefault();
+                }
+                //源对象进入目标对象
+                 one.ondragenter = function(e){
+//                    one.innerHTML="进入";
+                    e.preventDefault();
+                }
+                //源对象离开目标对象
+                one.ondragleave = function(e){
+//                    one.innerHTML="离开";
+                    e.preventDefault();
+                }
+                //源对象在目标对象中松手
+                 one.ondrop = function(e){
+//                    one.innerHTML="放手";
+                    e.preventDefault();//阻止默认事件
+                    alert(e.dataTransfer.getData("name")); //获取参数
+                    one.appendChild(two);
+                }
+            }
+        </script>
+    </body>
+</html>

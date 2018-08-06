@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>桌面提醒功能</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <button id="tz">通知</button>
+        <script>
+//            var tz = document.getElementById("tz");
+           var str ="<button>删除好友</button>";
+            window.onload = function () {
+                if (window.Notification) {
+                    if (window.Notification.permission == "granted") {
+                        var options = {
+                            body: "可以加为好友吗？",
+                            icon: "http://youdaocloud.oss-cn-shanghai.aliyuncs.com/202279.jpg",
+                            dir: "auto",
+                            tag: "SoMany",
+                            sound: 'http://localhost:63342/SVG/2.mp3',
+                            silent: false
+                        };
+                        var notice = new Notification("hi",options);
+                        notice.onclose = function(){
+                            alert("关闭");
+                        }
+                    }else{
+                        Notification.requestPermission();
+                    }
+                }else{
+                    alert("no");
+                }
+            }
+        </script>
+
+    </body>
+</html>

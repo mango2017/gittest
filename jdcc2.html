@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>简单存储之应用sessionStorage</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            window.onload = function(){
+                var title = document.getElementsByName("title")[0];
+                var content = document.getElementsByName("content")[0];
+                var login = document.getElementById("login");
+                if(sessionStorage.title && sessionStorage.content){
+                    title.value = sessionStorage.title;
+                    content.value = sessionStorage.content;
+                }
+                login.onclick = function(){
+                    sessionStorage.title = title.value;
+                    sessionStorage.content = content.value;
+                }
+            }           
+        </script>
+    </head>
+    <body>
+        标题：<input type="text" name="title"><br/>
+        内容：<textarea rows="5" cols="15" name="content"></textarea>
+        <a href="1.php" id="login">登录</a>
+    </body>
+</html>
